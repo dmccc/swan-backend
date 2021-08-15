@@ -1,0 +1,4 @@
+# 自己的机器启动单个服务的时候，内部无 DNS，使用 IP 地址注册
+eureka:
+  instance:
+    preferIpAddress: true
