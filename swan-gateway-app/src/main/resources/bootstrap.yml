@@ -1,5 +1,16 @@
+server:
+  port: 0
+
 spring:
   application:
     name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+          # 外放服务需要定义 edge 参数
+          includeExpression: metadata['edge'] == 'true'
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:local}
