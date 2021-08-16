@@ -22,6 +22,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -73,10 +74,10 @@ public class AppendixController {
 
                 val in = file.getInputStream();
                 val out = Files.newOutputStream(path);
-                byte[] tempbytes = new byte[1024];
-                int byteread = 0;
-                while ((byteread = in.read(tempbytes)) != -1) {
-                    out.write(tempbytes, 0, byteread);
+                byte[] tempBytes = new byte[1024];
+                int byteRead;
+                while ((byteRead = in.read(tempBytes)) != -1) {
+                    out.write(tempBytes, 0, byteRead);
                 }
                 in.close();
                 out.close();
@@ -100,7 +101,7 @@ public class AppendixController {
         return ResponseEntity
                 .ok()
                 .contentLength(res.getFile().length())
-                .contentType(new PathExtensionContentNegotiationStrategy().getMediaTypeForResource(res) == null ? MediaType.APPLICATION_OCTET_STREAM  : new PathExtensionContentNegotiationStrategy().getMediaTypeForResource(res) )
+                .contentType(Optional.of(new PathExtensionContentNegotiationStrategy().getMediaTypeForResource(res)).orElse(MediaType.APPLICATION_OCTET_STREAM))
                 .body(new InputStreamResource(res.getInputStream()));
     }
 
