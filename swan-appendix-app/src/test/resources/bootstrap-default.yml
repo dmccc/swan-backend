@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: appendix
+  cloud:
+    config:
+      enabled: false
+  datasource:
+    generateUniqueName: true
+
+eureka:
+  client:
+    enabled: false

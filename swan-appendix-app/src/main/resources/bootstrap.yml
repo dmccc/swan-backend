@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: appendix
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+  servlet:
+    multipart:
+      max-file-size: 150MB
+      max-request-size: 150MB

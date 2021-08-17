@@ -1,0 +1,4 @@
+file('.').listFiles()
+        .findAll { it.isDirectory() }
+        .findAll { it.toPath().resolve('build.gradle').toFile().exists() }
+        .each { include it.getName() }

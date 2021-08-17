@@ -1,0 +1,43 @@
+# Eclipse
+.classpath
+.project
+.settings/
+.apt_generated/
+
+# STS
+.factorypath
+.springBeans
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+# logs
+logs/
+*.log
+
+# gradle
+build/
+out/
+bin/
+.gradle
+
+# spring-boot
+*.pid
+
+# docker-compose
+.datadir/
+.config-repo/
+
+# vsCode
+.vsCode
+
+lombok.config
