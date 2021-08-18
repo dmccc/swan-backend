@@ -3,11 +3,7 @@ spring:
     config:
       name: ${spring.application.name}
       profile: dev
-      label: masters
+      label: master
       discovery:
         enabled: true
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://${EUREKA_SERVER_HOST:localhost}:${EUREKA_SERVER_PORT:8761}/eureka/
+      fail-fast: true

@@ -1,9 +1,0 @@
-spring:
-  cloud:
-    config:
-      name: ${spring.application.name}
-      profile: ${SPRING_PROFILES_ACTIVE:swarm}
-      label: master
-      uri: http://configserver:8888
-      discovery:
-        enabled: true
