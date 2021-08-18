@@ -1,0 +1,16 @@
+# 调测配置，服务快速更新
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 3
+    lease-expiration-duration-in-seconds: 5
+  client:
+      serviceUrl:
+        defaultZone: http://${EUREKA_SERVER_HOST:localhost}:${EUREKA_SERVER_PORT:8761}/eureka/
+spring:
+  profiles:
+    include:
+      - native
+
+logging:
+  level:
+    com.netflix.discovery: OFF

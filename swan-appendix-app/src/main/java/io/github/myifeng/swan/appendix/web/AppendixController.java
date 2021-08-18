@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
@@ -97,7 +98,14 @@ public class AppendixController {
     public ResponseEntity<InputStreamResource> getFile(HttpServletRequest request) throws IOException {
         val relativePath = request.getRequestURI();
         val relativePathStr = relativePath.substring(1);
-        val res = new FileUrlResource(Paths.get(uploadFolder, relativePathStr).toString());
+        if (Strings.isNullOrEmpty(relativePathStr)) {
+            return ResponseEntity.notFound().build();
+        }
+        Path path = Paths.get(uploadFolder, relativePathStr);
+        if (!path.toFile().exists()) {
+            return ResponseEntity.notFound().build();
+        }
+        val res = new FileUrlResource(path.toString());
         return ResponseEntity
                 .ok()
                 .contentLength(res.getFile().length())

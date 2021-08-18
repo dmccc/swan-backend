@@ -1,0 +1,20 @@
+server:
+  port: 0
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 3
+    lease-expiration-duration-in-seconds: 5
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    metadata-map:
+      edge: true
+
+logging:
+  level:
+    # 调测选项
+    com.netflix.eureka: OFF
+    com.netflix.discovery: OFF
+
+swan:
+  upload-folder: ${SPRAY.UPLOAD-FOLDER:.swan/appendix}
