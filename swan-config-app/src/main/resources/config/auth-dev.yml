@@ -7,14 +7,13 @@ eureka:
     lease-renewal-interval-in-seconds: 3
     lease-expiration-duration-in-seconds: 5
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
-    metadata-map:
-      edge: true
 
-logging:
-  level:
-    # 调测选项
-    com.netflix.eureka: OFF
-    com.netflix.discovery: OFF
-
-swan:
-  upload-folder: ${SWAN.UPLOAD-FOLDER:.swan/appendix}
+spring:
+  datasource:
+    platform: h2
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
