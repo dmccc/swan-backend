@@ -11,11 +11,5 @@ dependencies {
 
     implementation project(':swan-starter-base')
 
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        // exclude JUnit 4 support
-        exclude group: 'junit', module: 'junit'
-    }
-    testImplementation 'org.junit.jupiter:junit-jupiter-api'
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine'
-    testRuntime 'org.junit.platform:junit-platform-engine'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
