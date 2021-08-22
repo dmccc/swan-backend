@@ -1,0 +1,29 @@
+-- password: 123456
+INSERT INTO ACCOUNT(ID, USERNAME, MOBILE, PASSWORD,NICK_NAME) VALUES
+  ('A01', 'root', '13000000000', '$2a$10$O7orK7iGLhCpmXtjJsfBWeS2WWrp1SnHCYZ5lY31dW0V/kyvwHsdm','超级管员'),
+  ('A02', 'user01', '1', '$2a$10$O7orK7iGLhCpmXtjJsfBWeS2WWrp1SnHCYZ5lY31dW0V/kyvwHsdm','用户01'),
+  ('A03', 'user02', '2', '$2a$10$O7orK7iGLhCpmXtjJsfBWeS2WWrp1SnHCYZ5lY31dW0V/kyvwHsdm','用户02');
+
+
+INSERT INTO ROLE(ID, NAME, DESCRIPTION) VALUES
+  ('R01', 'ADMIN', '管理员'),
+  ('R02', 'TEST_ADMIN', '管理员'),
+  ('R10', 'REGULAR', '一般用户');
+
+INSERT INTO ACCOUNT_ROLE(ACCOUNT_ID, ROLE_ID) VALUES
+  ('A01', 'R01'),
+  ('A01', 'R02'),
+  ('A02', 'R10'),
+  ('A03', 'R10');
+
+INSERT INTO AUTHORITY(ID, NAME, DESCRIPTION) VALUES
+  ('AU01', 'ADMIN', '系统管理权限'),
+  ('AU02', 'TEST02', '测试权限02'),
+  ('AU03', 'TEST03', '测试权限03');
+
+
+INSERT INTO ACCOUNT_AUTHORITY(ACCOUNT_ID, AUTHORITY_ID) VALUES
+  ('A01', 'AU01'),
+  ('A01', 'AU02'),
+  ('A02', 'AU02'),
+  ('A03', 'AU03');
