@@ -9,6 +9,19 @@ spring:
           enabled: true
           lowerCaseServiceId: true
           includeExpression: metadata['edge'] == 'true'
+      routes:
+        - id: appendix
+          uri: lb://appendix
+          predicates:
+            - Path=/appendix/**
+          filters:
+            - StripPrefix=0
+        - id: oauth
+          uri: lb://auth
+          predicates:
+            - Path=/oauth/**
+          filters:
+            - StripPrefix=0
 
 eureka:
   instance:
