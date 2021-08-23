@@ -2,7 +2,6 @@ package io.github.myifeng.swan.auth.config;
 
 import io.github.myifeng.swan.auth.service.SwanUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,7 +16,6 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,27 +35,16 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	private SwanUserDetailsService swanUserDetailsService;
 
 	@Autowired
-	@Qualifier("jwtTokenStore")
-	private TokenStore tokenStore;
-
-	@Autowired
 	private JwtAccessTokenConverter jwtAccessTokenConverter;
 
+	@Autowired
+	private TokenStore jwtTokenStore;
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-	@Bean
-	public TokenStore jwtTokenStore() {
-		return new JwtTokenStore(jwtAccessTokenConverter());
-	}
-
-	@Bean
-	public JwtAccessTokenConverter jwtAccessTokenConverter() {
-		return new JwtAccessTokenConverter();
-	}
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -68,7 +55,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
 		endpoints.authenticationManager(authenticationManager)
 				.userDetailsService(swanUserDetailsService)
-				.tokenStore(tokenStore)
+				.tokenStore(jwtTokenStore)
 				.accessTokenConverter(jwtAccessTokenConverter)
 				.tokenEnhancer(tokenEnhancerChain);
 	}
