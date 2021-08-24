@@ -60,7 +60,6 @@ subprojects {
 
 }
 
-// XXX: 该部分是否应该拆分到服务中，由服务自身决定？
 configure(subprojects.findAll { it.name.endsWith('-app') }) {
     apply plugin: 'org.springframework.boot'
 
