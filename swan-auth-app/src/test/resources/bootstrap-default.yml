@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: auth
+  cloud:
+    config:
+      enabled: false
+  datasource:
+    generateUniqueName: true
+
+eureka:
+  client:
+    enabled: false

@@ -1,7 +1,7 @@
-package io.github.myifeng.swan.appendix.test;
+package io.github.myifeng.swan.auth.test;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class AppendixApiTest {
+public class OAuthApplicationTest {
 }
