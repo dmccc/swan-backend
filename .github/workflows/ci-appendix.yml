@@ -6,11 +6,11 @@ env:
   SWAN_MODULE_NAME_FULL: swan-demo-app
 
 on:
+  pull_request:
+    branches:
+      - dev
+      - main
   push:
-    pull_request:
-      branches:
-        - dev
-        - main
     paths:
       - swan-demo-app/**
       - deployment/Dockerfile-demo
@@ -52,7 +52,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: ${{ github.ref = 'refs/heads/main' && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true }}
+          push: ${{ github.ref == 'refs/heads/main' && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true }}
           file: deployment/Dockerfile-${{ env.SWAN_MODULE_NAME }}
           tags: ${{ env.SWAN_IMAGE_TAG }}
           platforms: linux/amd64,linux/arm64
