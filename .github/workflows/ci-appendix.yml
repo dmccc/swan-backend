@@ -8,7 +8,8 @@ env:
 on:
   push:
     paths:
-      - ${{SWAN_MODULE_NAME_FULL}}/**
+      - swan-demo-app/**
+      - deployment/Dockerfile-demo
       - build.gradle
       - setting.gradle
 
