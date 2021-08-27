@@ -1,9 +1,9 @@
-name: Appendix CI
+name: Auth CI
 
 env:
-  SWAN_MODULE_NAME: appendix
-  SWAN_IMAGE_TAG: myifeng/swan-appendix:latest
-  SWAN_MODULE_NAME_FULL: swan-appendix-app
+  SWAN_MODULE_NAME: auth
+  SWAN_IMAGE_TAG: myifeng/swan-auth:latest
+  SWAN_MODULE_NAME_FULL: swan-auth-app
 
 on:
   pull_request:
@@ -12,8 +12,8 @@ on:
       - main
   push:
     paths:
-      - swan-appendix-app/**
-      - deployment/Dockerfile-appendix
+      - swan-auth-app/**
+      - deployment/Dockerfile-auth
       - build.gradle
       - setting.gradle
 
