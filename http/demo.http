@@ -1,0 +1,25 @@
+### add
+POST http://localhost:9091/demo
+Content-Type: application/json
+
+{
+  "name": "name"
+}
+
+### page
+GET http://localhost:9091/demo?rows=10
+
+### getById
+GET http://localhost:9091/demo/1
+
+### update
+PUT http://localhost:9091/demo/1
+Content-Type: application/json
+
+{
+  "name": "name-update"
+}
+
+### delete
+DELETE http://localhost:9091/demo/1
+
