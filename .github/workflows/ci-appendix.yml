@@ -24,7 +24,7 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ env.GITHUB_REPOSITORY }}-${{ env.GITHUB_REF }}-${{ SWAN_MODULE_NAME_FULL }}-gradle
+          key: ${{ env.GITHUB_REPOSITORY }}-${{ env.GITHUB_REF }}-${{ env.SWAN_MODULE_NAME_FULL }}-gradle
       - name: Set up JDK 8
         uses: actions/setup-java@v2
         with:
@@ -49,6 +49,6 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name == 'pull_request' }}
-          file: deployment/Dockerfile-${{SWAN_MODULE_NAME}}
-          tags: ${{SWAN_IMAGE_TAG}}
+          file: deployment/Dockerfile-${{ env.SWAN_MODULE_NAME }}
+          tags: ${{ env.SWAN_IMAGE_TAG }}
           platforms: linux/amd64,linux/arm64
