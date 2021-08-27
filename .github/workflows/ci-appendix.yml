@@ -7,7 +7,6 @@ env:
 
 on:
   push:
-    branches: [ test_ci ]
     paths:
       - ${{SWAN_MODULE_NAME_FULL}}/**
       - build.gradle
