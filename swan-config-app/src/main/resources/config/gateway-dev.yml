@@ -22,6 +22,12 @@ spring:
             - Path=/oauth/**
           filters:
             - StripPrefix=0
+        - id: demo
+          uri: lb://demo
+          predicates:
+            - Path=/demo/**
+          filters:
+            - StripPrefix=0
 
 eureka:
   instance:

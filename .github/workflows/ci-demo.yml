@@ -1,0 +1,58 @@
+name: Demo CI
+
+env:
+  SWAN_MODULE_NAME: demo
+  SWAN_IMAGE_TAG: myifeng/swan-demo:latest
+  SWAN_MODULE_NAME_FULL: swan-demo-app
+
+on:
+  pull_request:
+    branches:
+      - dev
+      - main
+  push:
+    paths:
+      - swan-demo-app/**
+      - deployment/Dockerfile-demo
+      - build.gradle
+      - setting.gradle
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        name: Cache gradle dependencies
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ github.repository }}-${{ github.ref }}-${{ env.SWAN_MODULE_NAME_FULL }}-gradle
+      - name: Set up JDK 8
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew :${{ env.SWAN_MODULE_NAME_FULL }}:build
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: ${{ github.ref == 'refs/heads/main' && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true }}
+          file: deployment/Dockerfile-${{ env.SWAN_MODULE_NAME }}
+          tags: ${{ env.SWAN_IMAGE_TAG }}
+          platforms: linux/amd64,linux/arm64
