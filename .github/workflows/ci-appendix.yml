@@ -24,7 +24,7 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ github.repository }}-${{ GITHUB_REF }}-${{ SWAN_MODULE_NAME_FULL }}-gradle
+          key: ${{ env.GITHUB_REPOSITORY }}-${{ env.GITHUB_REF }}-${{ SWAN_MODULE_NAME_FULL }}-gradle
       - name: Set up JDK 8
         uses: actions/setup-java@v2
         with:
@@ -33,7 +33,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: ./gradlew :${{SWAN_MODULE_NAME_FULL}}:build
+        run: ./gradlew :swan-demo-app:build
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
