@@ -7,6 +7,10 @@ env:
 
 on:
   push:
+    pull_request:
+      branches:
+        - dev
+        - main
     paths:
       - swan-demo-app/**
       - deployment/Dockerfile-demo
@@ -14,7 +18,7 @@ on:
       - setting.gradle
 
 jobs:
-  build-jar:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -48,7 +52,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: ${{ github.event_name == 'pull_request' }}
+          push: ${{ github.ref = 'refs/heads/main' && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true }}
           file: deployment/Dockerfile-${{ env.SWAN_MODULE_NAME }}
           tags: ${{ env.SWAN_IMAGE_TAG }}
           platforms: linux/amd64,linux/arm64
