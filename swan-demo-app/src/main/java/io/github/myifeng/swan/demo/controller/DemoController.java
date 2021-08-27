@@ -22,7 +22,7 @@ public class DemoController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Page<DemoEntity> page(@RequestParam(name = "page", defaultValue = "0") int page,
-                                 @RequestParam(name = "rows", defaultValue = "10") int rows) {
+                                 @RequestParam(name = "rows", defaultValue = "20") int rows) {
         return dao.findAllBy(PageRequest.of(page, rows), DemoEntity.class);
     }
 
