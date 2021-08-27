@@ -33,7 +33,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: ./gradlew :swan-demo-app:build
+        run: ./gradlew :${{ env.SWAN_MODULE_NAME_FULL }}:build
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
