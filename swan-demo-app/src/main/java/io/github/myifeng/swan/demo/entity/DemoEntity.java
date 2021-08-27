@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "DEMO")
 public class DemoEntity {
+
     @Id
     @GeneratedValue
     private Long id;
