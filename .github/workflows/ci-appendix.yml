@@ -24,7 +24,7 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ env.GITHUB_REPOSITORY }}-${{ env.GITHUB_REF }}-${{ env.SWAN_MODULE_NAME_FULL }}-gradle
+          key: ${{ github.repository }}-${{ github.ref }}-${{ env.SWAN_MODULE_NAME_FULL }}-gradle
       - name: Set up JDK 8
         uses: actions/setup-java@v2
         with:
