@@ -8,9 +8,25 @@
 
 ------
 
-![size](https://img.shields.io/github/repo-size/myifeng/swan-backend)
-![Build and Push Image CI](https://img.shields.io/github/workflow/status/myifeng/swan-backend/Build%20and%20Push%20Image%20CI)
+<div align="center">
+
+![GitHub repo size](https://img.shields.io/github/repo-size/myifeng/swan-backend)
 ![license](https://img.shields.io/github/license/myifeng/swan-backend)
+![GitHub issues](https://img.shields.io/github/issues/myifeng/swan-backend)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/myifeng/swan-backend)
+
+</div>
+
+<div align="center">
+
+![workflow](https://github.com/myifeng/swan-backend/actions/workflows/codeql-analysis.yml/badge.svg)
+![workflow](https://github.com/myifeng/swan-backend/actions/workflows/ci-appendix.yml/badge.svg)
+![workflow](https://github.com/myifeng/swan-backend/actions/workflows/ci-auth.yml/badge.svg)
+![workflow](https://github.com/myifeng/swan-backend/actions/workflows/ci-config.yml/badge.svg)
+![workflow](https://github.com/myifeng/swan-backend/actions/workflows/ci-eureka.yml/badge.svg)
+![workflow](https://github.com/myifeng/swan-backend/actions/workflows/ci-gateway.yml/badge.svg)
+
+</div>
 
 ## Quick Start
 
@@ -20,9 +36,7 @@ It's that easy!
 
 ## Module
 
-
 You should start `swan-config-app` first, then start `swan-eureka-app`, and finally start other services.
-
 
 ```
 swan-backend
@@ -42,7 +56,6 @@ swan-backend
 | Gradle | 7.1.1 |
 | Spring Boot | 2.2.1.RELEASE |
 | Spring Cloud | Hoxton.RELEASE |
-
 
 ## Maintainers
 
