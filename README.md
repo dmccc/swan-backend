@@ -20,7 +20,9 @@ It's that easy!
 
 ## Module
 
+
 You should start `swan-config-app` first, then start `swan-eureka-app`, and finally start other services.
+
 
 ```
 swan-backend
