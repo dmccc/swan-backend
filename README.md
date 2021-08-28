@@ -10,6 +10,13 @@
 
 <div align="center">
 
+![GitHub repo size](https://img.shields.io/badge/Spring%20Boot-2.2.1.RELEASE-green.svg)
+![GitHub repo size](https://img.shields.io/badge/Spring%20Cloud-Hoxton.RELEASE-green.svg)
+
+</div>
+
+<div align="center">
+
 ![GitHub repo size](https://img.shields.io/github/repo-size/myifeng/swan-backend)
 ![license](https://img.shields.io/github/license/myifeng/swan-backend)
 ![GitHub issues](https://img.shields.io/github/issues/myifeng/swan-backend)
@@ -47,15 +54,6 @@ swan-backend
 ├── swan-gateway
 ├── swan-stater-auth
 ```
-
-## Environments
-
-|**dependent**  | **version**   |
-|----           |----           |
-| JDK | 8+ |
-| Gradle | 7.1.1 |
-| Spring Boot | 2.2.1.RELEASE |
-| Spring Cloud | Hoxton.RELEASE |
 
 ## Maintainers
 

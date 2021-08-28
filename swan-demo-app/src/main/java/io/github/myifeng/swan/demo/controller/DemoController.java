@@ -2,10 +2,12 @@ package io.github.myifeng.swan.demo.controller;
 
 import io.github.myifeng.swan.demo.dao.DemoDao;
 import io.github.myifeng.swan.demo.entity.DemoEntity;
+import io.github.myifeng.swan.starter.auth.AccountDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +30,8 @@ public class DemoController {
 
     @Transactional
     @PostMapping
-    public DemoEntity create(@RequestBody DemoEntity demo) {
+    public DemoEntity create(@RequestBody DemoEntity demo, AccountDetails details) {
+        demo.setCreateUser(details.getId());
         return dao.saveAndFlush(demo);
     }
 
@@ -40,6 +43,7 @@ public class DemoController {
     }
 
     @Transactional
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         dao.deleteById(id);
