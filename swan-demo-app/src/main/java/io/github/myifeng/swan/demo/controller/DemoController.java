@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/demo")
+@RequestMapping("/hello")
 public class DemoController {
 
     private final DemoDao dao;

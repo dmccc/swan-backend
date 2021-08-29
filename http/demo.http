@@ -10,7 +10,7 @@ client.global.set('refresh_token', response.body.refresh_token);
 %}
 
 ### add
-POST http://localhost:9091/demo
+POST http://localhost:8080/demo/hello
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
@@ -19,14 +19,14 @@ Content-Type: application/json
 }
 
 ### page
-GET http://localhost:9091/demo?rows=10
+GET http://localhost:8080/demo/hello?rows=10
 
 ### getById
-GET http://localhost:9091/demo/1
+GET http://localhost:8080/demo/hello/1
 Authorization: Bearer {{access_token}}
 
 ### update
-PUT http://localhost:9091/demo/1
+PUT http://localhost:8080/demo/hello/1
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
@@ -35,5 +35,5 @@ Content-Type: application/json
 }
 
 ### delete
-DELETE http://localhost:9091/demo/1
+DELETE http://localhost:8080/demo/hello/1
 Authorization: Bearer {{access_token}}

@@ -17,4 +17,4 @@ logging:
     com.netflix.discovery: OFF
 
 swan:
-  upload-folder: ${SWAN.UPLOAD-FOLDER:.swan/appendix}
+  upload-folder: ${UPLOAD-FOLDER:.swan/appendix}
