@@ -27,7 +27,7 @@ spring:
           predicates:
             - Path=/demo/**
           filters:
-            - StripPrefix=0
+            - StripPrefix=1
 
 eureka:
   instance:

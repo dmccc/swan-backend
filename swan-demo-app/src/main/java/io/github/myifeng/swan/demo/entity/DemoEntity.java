@@ -26,4 +26,7 @@ public class DemoEntity {
     @Column(name = "NAME")
     private String name;
 
+    @Column(name = "CREATE_USER")
+    private String createUser;
+
 }
