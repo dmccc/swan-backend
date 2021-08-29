@@ -1,14 +1,12 @@
 name: Release CI
 
 env:
-  PUSH_IMAGE: ${{ github.event_name == 'release' }}
   RELEASED_NAME: ${{ github.event.release.tag_name }}
 
 on:
   release:
     types:
       - released
-      - prereleased
 
 jobs:
   build:
@@ -39,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: ${{ env.PUSH_IMAGE }}
+          push: true
           file: deployment/Dockerfile-eureka
           tags: |
             myifeng/swan-eureka:latest
@@ -49,7 +47,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: ${{ env.PUSH_IMAGE }}
+          push: true
           file: deployment/Dockerfile-appendix
           tags: |
             myifeng/swan-appendix:latest
@@ -59,7 +57,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: ${{ env.PUSH_IMAGE }}
+          push: true
           file: deployment/Dockerfile-auth
           tags: |
             myifeng/swan-auth:latest
@@ -69,7 +67,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: ${{ env.PUSH_IMAGE }}
+          push: true
           file: deployment/Dockerfile-config
           tags: |
             myifeng/swan-config:latest
@@ -79,7 +77,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: ${{ env.PUSH_IMAGE }}
+          push: true
           file: deployment/Dockerfile-gateway
           tags: |
             myifeng/swan-gateway:latest
@@ -90,7 +88,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: ${{ env.PUSH_IMAGE }}
+          push: true
           file: deployment/Dockerfile-demo
           tags: |
             myifeng/swan-demo:latest
