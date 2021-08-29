@@ -2,7 +2,7 @@ name: Release CI
 
 env:
   PUSH_IMAGE: ${{ github.event_name == 'release' }}
-  RELEASED_NAME: ${{ github.event.release.name }}
+  RELEASED_NAME: ${{ github.event.release.tag_name }}
 
 on:
   release:
