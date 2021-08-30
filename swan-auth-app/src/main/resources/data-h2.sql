@@ -27,3 +27,7 @@ INSERT INTO ACCOUNT_AUTHORITY(ACCOUNT_ID, AUTHORITY_ID) VALUES
   ('A01', 'AU02'),
   ('A02', 'AU02'),
   ('A03', 'AU03');
+
+INSERT INTO CLIENT(ID, CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN_VALIDITY_SECONDS, REFRESH_TOKEN_VALIDITY_SECONDS, SCOPE, AUTHORIZED_GRANT_TYPES) VALUES
+  ('C01', 'admin', '$2a$10$O7orK7iGLhCpmXtjJsfBWeS2WWrp1SnHCYZ5lY31dW0V/kyvwHsdm', 3600, 2592000, 'all','client_credentials,authorization_code,password,refresh_token'),
+  ('C02', 'swan', '$2a$10$IT/xxGqvDiUEt3GZ.TCEtORVVbmEbhfgDqeXe3trcUBocp5Jl7Qyy', 3600, 864000, 'all','client_credentials,authorization_code,password,refresh_token');
