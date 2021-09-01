@@ -27,6 +27,7 @@ public class SwanClientDetailsService implements ClientDetailsService {
         details.setAccessTokenValiditySeconds(client.getAccessTokenValiditySeconds());
         details.setRefreshTokenValiditySeconds(client.getRefreshTokenValiditySeconds());
         details.setAuthorizedGrantTypes(client.getAuthorizedGrantTypes());
+        details.setRegisteredRedirectUri(client.getRegisteredRedirectUri());
         details.setScope(client.getScope());
         return details;
     }

@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 @Builder
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-@ToString(of = {"id", "username"})
 public class Client {
 
     @Id
@@ -46,8 +45,12 @@ public class Client {
     @Column(name = "AUTO_APPROVE", columnDefinition = "bit(1) default 1")
     private boolean autoApprove;
 
+    @Builder.Default
     @Column(name = "SCOPE", length = 200)
     private String scope = "all";
+
+    @Column(name = "REGISTERED_REDIRECT_URI", length = 512)
+    private String registeredRedirectUri;
 
     @Builder.Default
     @Column(name = "AUTHORIZED_GRANT_TYPES", length = 200)
@@ -57,14 +60,21 @@ public class Client {
         if (StringUtils.isBlank(this.scope)) {
             return Collections.EMPTY_SET;
         }
-        return Arrays.stream(Strings.split(this.scope, ',')).collect(Collectors.toSet());
+        return Arrays.stream(Strings.split(this.scope.trim(), ',')).collect(Collectors.toSet());
     }
 
     public Set<String> getAuthorizedGrantTypes() {
         if (StringUtils.isBlank(this.authorizedGrantTypes)) {
             return Collections.EMPTY_SET;
         }
-        return Arrays.stream(Strings.split(this.authorizedGrantTypes, ',')).collect(Collectors.toSet());
+        return Arrays.stream(Strings.split(this.authorizedGrantTypes.trim(), ',')).collect(Collectors.toSet());
+    }
+
+    public Set<String> getRegisteredRedirectUri() {
+        if (StringUtils.isBlank(this.registeredRedirectUri)) {
+            return Collections.EMPTY_SET;
+        }
+        return Arrays.stream(Strings.split(this.registeredRedirectUri.trim(), ',')).collect(Collectors.toSet());
     }
 
 }
