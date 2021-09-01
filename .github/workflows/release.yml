@@ -38,7 +38,7 @@ jobs:
         with:
           context: .
           push: true
-          file: deployment/Dockerfile-eureka
+          file: docker/Dockerfile-eureka
           tags: |
             myifeng/swan-eureka:latest
             myifeng/swan-eureka:${{ env.RELEASED_NAME }}
@@ -48,7 +48,7 @@ jobs:
         with:
           context: .
           push: true
-          file: deployment/Dockerfile-appendix
+          file: docker/Dockerfile-appendix
           tags: |
             myifeng/swan-appendix:latest
             myifeng/swan-appendix:${{ env.RELEASED_NAME }}
@@ -58,7 +58,7 @@ jobs:
         with:
           context: .
           push: true
-          file: deployment/Dockerfile-auth
+          file: docker/Dockerfile-auth
           tags: |
             myifeng/swan-auth:latest
             myifeng/swan-auth:${{ env.RELEASED_NAME }}
@@ -68,7 +68,7 @@ jobs:
         with:
           context: .
           push: true
-          file: deployment/Dockerfile-config
+          file: docker/Dockerfile-config
           tags: |
             myifeng/swan-config:latest
             myifeng/swan-config:${{ env.RELEASED_NAME }}
@@ -78,7 +78,7 @@ jobs:
         with:
           context: .
           push: true
-          file: deployment/Dockerfile-gateway
+          file: docker/Dockerfile-gateway
           tags: |
             myifeng/swan-gateway:latest
             myifeng/swan-gateway:${{ env.RELEASED_NAME }}
@@ -89,7 +89,7 @@ jobs:
         with:
           context: .
           push: true
-          file: deployment/Dockerfile-demo
+          file: docker/Dockerfile-demo
           tags: |
             myifeng/swan-demo:latest
             myifeng/swan-demo:${{ env.RELEASED_NAME }}

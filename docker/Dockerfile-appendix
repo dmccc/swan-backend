@@ -4,7 +4,7 @@ ENV TZ "Asia/Shanghai"
 
 ENV UPLOAD-FOLDER /swan/appendix
 
-COPY /swan-appendix-app/build/libs/swan-appendix-app-1.0.0.SNAPSHOT.jar /swan/app.jar
+COPY swan-appendix-app-1.0.0.SNAPSHOT.jar /swan/app.jar
 
 WORKDIR /swan
 

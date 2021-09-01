@@ -7,7 +7,7 @@ services:
     volumes:
       - /etc/timezone:/etc/timezone
       - /etc/localtime:/etc/localtime
-      - /srv/swan/mysql:/var/lib/mysql"
+      - /srv/swan/mysql:/var/lib/mysql
     environment:
       MYSQL_DATABASE: swan
       MYSQL_USER: swan
