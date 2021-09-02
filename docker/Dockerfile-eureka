@@ -1,8 +1,10 @@
-FROM openjdk:8-jre-slim-buster
+FROM openjdk:8-jre-buster
 
 ENV TZ "Asia/Shanghai"
 
 COPY swan-eureka-app-1.0.0.SNAPSHOT.jar /swan/app.jar
+
+HEALTHCHECK CMD curl --fail http://localhost:8761/actuator/health || exit 1
 
 EXPOSE 8761
 
