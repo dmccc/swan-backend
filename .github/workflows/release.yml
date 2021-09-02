@@ -1,14 +1,12 @@
 name: Release CI
 
 env:
-  PUSH_IMAGE: ${{ github.event_name == 'release' }}
   RELEASED_NAME: ${{ github.event.release.tag_name }}
 
 on:
   release:
     types:
       - released
-      - prereleased
 
 jobs:
   build:
@@ -38,9 +36,9 @@ jobs:
       - name: Build and push eureka
         uses: docker/build-push-action@v2
         with:
-          context: .
-          push: ${{ env.PUSH_IMAGE }}
-          file: deployment/Dockerfile-eureka
+          context: docker
+          push: true
+          file: docker/Dockerfile-eureka
           tags: |
             myifeng/swan-eureka:latest
             myifeng/swan-eureka:${{ env.RELEASED_NAME }}
@@ -48,9 +46,9 @@ jobs:
       - name: Build and push appendix
         uses: docker/build-push-action@v2
         with:
-          context: .
-          push: ${{ env.PUSH_IMAGE }}
-          file: deployment/Dockerfile-appendix
+          context: docker
+          push: true
+          file: docker/Dockerfile-appendix
           tags: |
             myifeng/swan-appendix:latest
             myifeng/swan-appendix:${{ env.RELEASED_NAME }}
@@ -58,9 +56,9 @@ jobs:
       - name: Build and push auth
         uses: docker/build-push-action@v2
         with:
-          context: .
-          push: ${{ env.PUSH_IMAGE }}
-          file: deployment/Dockerfile-auth
+          context: docker
+          push: true
+          file: docker/Dockerfile-auth
           tags: |
             myifeng/swan-auth:latest
             myifeng/swan-auth:${{ env.RELEASED_NAME }}
@@ -68,9 +66,9 @@ jobs:
       - name: Build and push config
         uses: docker/build-push-action@v2
         with:
-          context: .
-          push: ${{ env.PUSH_IMAGE }}
-          file: deployment/Dockerfile-config
+          context: docker
+          push: true
+          file: docker/Dockerfile-config
           tags: |
             myifeng/swan-config:latest
             myifeng/swan-config:${{ env.RELEASED_NAME }}
@@ -78,9 +76,9 @@ jobs:
       - name: Build and push gateway
         uses: docker/build-push-action@v2
         with:
-          context: .
-          push: ${{ env.PUSH_IMAGE }}
-          file: deployment/Dockerfile-gateway
+          context: docker
+          push: true
+          file: docker/Dockerfile-gateway
           tags: |
             myifeng/swan-gateway:latest
             myifeng/swan-gateway:${{ env.RELEASED_NAME }}
@@ -89,9 +87,9 @@ jobs:
       - name: Build and push demo
         uses: docker/build-push-action@v2
         with:
-          context: .
-          push: ${{ env.PUSH_IMAGE }}
-          file: deployment/Dockerfile-demo
+          context: docker
+          push: true
+          file: docker/Dockerfile-demo
           tags: |
             myifeng/swan-demo:latest
             myifeng/swan-demo:${{ env.RELEASED_NAME }}

@@ -41,3 +41,5 @@ bin/
 .vsCode
 
 lombok.config
+
+docker/*.jar

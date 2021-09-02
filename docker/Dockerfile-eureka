@@ -2,7 +2,9 @@ FROM openjdk:8-jre-slim-buster
 
 ENV TZ "Asia/Shanghai"
 
-COPY /swan-auth-app/build/libs/swan-auth-app-1.0.0.SNAPSHOT.jar /swan/app.jar
+COPY swan-eureka-app-1.0.0.SNAPSHOT.jar /swan/app.jar
+
+EXPOSE 8761
 
 WORKDIR /swan
 

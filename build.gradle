@@ -27,7 +27,7 @@ subprojects {
 
     repositories {
 //    mavenCentral()
-        maven{ url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
     }
 
     dependencies {
@@ -66,5 +66,19 @@ configure(subprojects.findAll { it.name.endsWith('-app') }) {
     dependencies {
         compile 'org.springframework.cloud:spring-cloud-starter'
         compile 'org.springframework.boot:spring-boot-starter-actuator'
+    }
+}
+
+task finalize(type: Copy) {
+    doLast { println 'running now' }
+}
+
+this.gradle.buildFinished {
+    subprojects.findAll { it.name.endsWith('-app') }.each { app ->
+        {
+            fileTree(app.buildDir.toPath().resolve('libs')).files.forEach(file -> {
+                ant.move file: file, todir: rootProject.file('docker')
+            })
+        }
     }
 }

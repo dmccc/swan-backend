@@ -1,11 +1,10 @@
 package io.github.myifeng.swan.auth.config;
 
+import io.github.myifeng.swan.auth.service.SwanClientDetailsService;
 import io.github.myifeng.swan.auth.service.SwanUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -35,16 +34,13 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	private SwanUserDetailsService swanUserDetailsService;
 
 	@Autowired
+	private SwanClientDetailsService swanClientDetailsService;
+
+	@Autowired
 	private JwtAccessTokenConverter jwtAccessTokenConverter;
 
 	@Autowired
 	private TokenStore jwtTokenStore;
-
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
-
 
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
@@ -58,18 +54,13 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 				.tokenStore(jwtTokenStore)
 				.accessTokenConverter(jwtAccessTokenConverter)
 				.tokenEnhancer(tokenEnhancerChain);
+
+		endpoints.setClientDetailsService(swanClientDetailsService);
 	}
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-		clients.inMemory()
-				.withClient("admin")
-				.secret(passwordEncoder.encode("admin"))
-				.accessTokenValiditySeconds(3600)
-				.refreshTokenValiditySeconds(864000)
-				.autoApprove(true)
-				.scopes("all")
-				.authorizedGrantTypes("authorization_code", "password", "refresh_token");
+		clients.withClientDetails(swanClientDetailsService);
 	}
 
 	@Override

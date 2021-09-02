@@ -2,7 +2,7 @@ FROM openjdk:8-jre-slim-buster
 
 ENV TZ "Asia/Shanghai"
 
-COPY /swan-gateway-app/build/libs/swan-gateway-app-1.0.0.SNAPSHOT.jar /swan/app.jar
+COPY swan-demo-app-1.0.0.SNAPSHOT.jar /swan/app.jar
 
 WORKDIR /swan
 

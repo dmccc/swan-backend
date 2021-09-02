@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mariadb
+    restart: always
+    volumes:
+      - /etc/timezone:/etc/timezone
+      - /etc/localtime:/etc/localtime
+      - /srv/swan/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: swan
+      MYSQL_USER: swan
+      MYSQL_PASSWORD: swan
+  config:
+    image: myifeng/swan-config
+    restart: always
+  eureka:
+    image: myifeng/swan-eureka
+    restart: always
+    depends_on:
+      - config
+  gateway:
+    image: myifeng/swan-gateway
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - config
+      - eureka
+  auth:
+    image: myifeng/swan-auth
+    restart: always
+    environment:
+      MYSQL_DATABASE: swan
+      MYSQL_USER: swan
+      MYSQL_PASSWORD: swan
+    depends_on:
+      - config
+      - eureka
+      - mysql
+  appendix:
+    image: myifeng/swan-appendix
+    restart: always
+    volumes:
+      - /srv/swan/appendix:/swan/appendix
+    depends_on:
+      - config
+      - eureka
+  demo:
+    image: myifeng/swan-demo
+    restart: always
+    environment:
+      MYSQL_DATABASE: swan
+      MYSQL_USER: swan
+      MYSQL_PASSWORD: swan
+    depends_on:
+      - config
+      - eureka
+      - mysql

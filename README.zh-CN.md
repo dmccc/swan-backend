@@ -36,25 +36,23 @@
 </div>
 
 🌍
-*[简体中文](README.zh-CN.md)*
+*[English](README.md)*
 
-`swan-backend` is a backend microservice scaffold based on Spring Cloud and Docker.
+**swan-backend**是一个基于`Spring Cloud`全家桶和`Docker容器`快速开发的一个后端微服务脚手架，
+集成了配置中心、注册中心、路由网关、身份验证、上传下载等核心功能。
+可以在该脚手架的基础上，快速开发出一套自己的后端微服务。
 
-It includes modules such as Config Server, Service Discovery, Gateway, OAuth2...
+## 使用
 
-Using `swan-backend` you can quickly develop a back-end microservice.
+点击右上角 `Use this template` 按钮就可以开始使用 **swan-backend**了!
 
-## Quick Start
+项目中`swan-demo-app`作为一个业务范例模块，供参考。
 
-Click the `Use this template` button to start using the **swan-backend**!
+## 结构
 
-It's that easy!
+启动项目，应该首先启动配置中心 `swan-config-app` 然后启动注册中心 `swan-eureka-app`, 最后就可以启动其他模块。
 
-## Module
-
-
-You should start `swan-config-app` first, then start `swan-eureka-app`, and finally start other services.
-
+代码结构如下:
 
 ```
 swan-backend
@@ -67,22 +65,22 @@ swan-backend
 ├── swan-stater-auth
 ```
 
-## Maintainers
+## 维护者
 
 [@myifeng](https://github.com/myifeng).
 
-## Contributing
+## 贡献代码
 
-Feel free to dive in! [Open an issue](https://github.com/myifeng/swan-backend/issues/new) or submit PRs.
+在使用过程中遇到问题请[创建issue](https://github.com/myifeng/swan-backend/issues/new) ,也欢迎提供代码提交PR
 
-Standard Readme follows the [Contributor Covenant](http://contributor-covenant.org/version/1/3/0/) Code of Conduct.
+贡献代码的规范和标准请参阅 [Contributor Covenant](http://contributor-covenant.org/version/1/3/0/).
 
-## Contributors
+## 贡献者
 
-All contributions are greatly appreciated.
+非常感谢以下所有的贡献者：
 
 [![All contributions](https://contrib.rocks/image?repo=myifeng/swan-backend)](https://github.com/myifeng/swan-backend/graphs/contributors)
 
-## License
+## 使用许可
 
 [MIT](LICENSE) © myifeng

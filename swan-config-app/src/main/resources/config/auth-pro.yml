@@ -1,0 +1,27 @@
+server:
+  port: 9090
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 3
+    lease-expiration-duration-in-seconds: 5
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_SERVER_HOST:eureka}:${EUREKA_SERVER_PORT:8761}/eureka/
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_URL:mysql}:${MYSQL_PORT:3306}/${MYSQL_DATABASE:swan}?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
+    username: ${MYSQL_USER:swan}
+    password: ${MYSQL_PASSWORD:swan}
+    platform: mysql
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true

@@ -14,7 +14,7 @@ on:
     paths:
       - swan-demo-app/**
       - swan-starter-auth/**
-      - deployment/Dockerfile-demo
+      - docker/Dockerfile-demo
       - build.gradle
       - setting.gradle
 
@@ -52,7 +52,7 @@ jobs:
       - name: Build and push Image
         uses: docker/build-push-action@v2
         with:
-          context: .
-          file: deployment/Dockerfile-${{ env.SWAN_MODULE_NAME }}
+          context: docker
+          file: docker/Dockerfile-${{ env.SWAN_MODULE_NAME }}
           tags: ${{ env.SWAN_IMAGE_TAG }}
           platforms: linux/amd64,linux/arm64
